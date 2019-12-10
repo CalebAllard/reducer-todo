@@ -8,10 +8,25 @@ export const reducer = (state,action) => {
         case "ADD_TODO":{
             return{
             ...state,
-            item: [...state.item, action.payload]
+            item: [...state.item, 
+                {   
+                    id: Date.now(), 
+                    item: action.payload,
+                    completed:false
+                }]
             };
         }
-        
+        case "REMOVE_TODO":{
+            
+            
+            
+            return{
+                ...state,
+
+                item: [state.item.filter(item => !item.completed )]    
+            }
+
+        }
         
         default: {
             return state;

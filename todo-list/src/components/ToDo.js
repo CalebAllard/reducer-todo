@@ -15,16 +15,18 @@ const ToDo = () => {
             e.target.classList.remove('complete');
         }
     };
+    
     return(<>
     
     <form>
         <input type='text' name='item' id='item' onChange={handleChange} value={inputTxt}></input>
-        <button onClick={(e) => { e.preventDefault(); dispatch({type:"ADD_TODO", payload:[inputTxt]})}}>Add</button>
+        <button onClick={(e) => { e.preventDefault(); dispatch({type:"ADD_TODO", payload:[inputTxt]}); setInputTxt(''); }}>Add</button>
+        <button onClick={(e) => {dispatch({type:"REMOVE_TODO"})}}>remove completed</button>
     </form>
     <div>
         {itemState.item.map(item =>
            
-           <h2 onClick={handleComplete}> {item}</h2>
+           <h2 onClick={handleComplete} key={Date.now()}> {item.item}</h2>
             
         )}
     </div>
